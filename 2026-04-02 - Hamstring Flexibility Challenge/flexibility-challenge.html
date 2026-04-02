@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexibility Challenge</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background: white;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0.3em;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 1.5em;
+  }
+  .block {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+  }
+  .block-header {
+    padding: 0.6em 1em;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .block-pike .block-header { background: #3b82f6; }
+  .block-pancake .block-header { background: #f97316; }
+  .block-body { padding: 1em; }
+  .exercise {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #eee;
+  }
+  .exercise:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .exercise-title {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 0.5em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .exercise-title .duration {
+    font-weight: 400;
+    color: #888;
+    font-size: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 0.4em;
+  }
+  th {
+    background: #f5f5f5;
+    text-align: left;
+    padding: 4px 8px;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 5px 8px;
+    border-top: 1px solid #f0f0f0;
+  }
+  tr:nth-child(even) td { background: #fafafa; }
+  .phase-contract { color: #dc2626; font-weight: 700; }
+  .phase-relax { color: #16a34a; font-weight: 700; }
+  .flow {
+    display: flex;
+    gap: 0.4em;
+    align-items: center;
+    font-size: 12px;
+    margin-top: 0.5em;
+    flex-wrap: wrap;
+  }
+  .flow-box {
+    background: #f0f0f0;
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-weight: 600;
+  }
+  .flow-arrow { color: #aaa; }
+  .flow-repeat { font-weight: 700; color: #7c3aed; }
+  .cue {
+    background: #fffbeb;
+    border-left: 3px solid #f59e0b;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin: 0.4em 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .warn {
+    background: #fef2f2;
+    border-left: 3px solid #ef4444;
+    padding: 5px 10px;
+    font-size: 11px;
+    margin-top: 0.5em;
+    border-radius: 0 4px 4px 0;
+    color: #b91c1c;
+  }
+  .notes-section {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5em;
+  }
+  .notes-header {
+    background: #374151;
+    color: white;
+    padding: 0.5em 1em;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .notes-body {
+    padding: 0.8em 1em;
+  }
+  .notes-body table { font-size: 12px; }
+  .tracking {
+    text-align: center;
+    background: #f0fdf4;
+    border: 2px solid #86efac;
+    border-radius: 10px;
+    padding: 0.8em 1em;
+    font-size: 12px;
+  }
+  .tracking a { color: #15803d; font-weight: 600; }
+  @media print {
+    body { padding: 1em; }
+    .block { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🧘 Flexibility Challenge</h1>
+<p class="subtitle">Daily 8 minutes &nbsp;·&nbsp; 2 blocks of 4 min &nbsp;·&nbsp; Pike + Pancake</p>
+
+<!-- BLOCK 1: PIKE -->
+<div class="block block-pike">
+  <div class="block-header">
+    <span>🔷 BLOCK 1: THE PIKE</span>
+    <span>4:00</span>
+  </div>
+  <div class="block-body">
+
+    <div class="exercise">
+      <div class="exercise-title">① Layered PNF Pike <span class="duration">1:00</span></div>
+      <p style="font-size:12px;color:#555;margin-bottom:0.4em;">Sit with legs straight. Fold to your first "wall".</p>
+      <table>
+        <tr><th>Time</th><th>Phase</th><th>Action</th></tr>
+        <tr><td>0:00–0:10</td><td><span class="phase-contract">CONTRACT</span></td><td>Dig heels into floor hard</td></tr>
+        <tr><td>0:10–0:30</td><td><span class="phase-relax">RELAX</span></td><td>Breathe out, pull deeper. Stay.</td></tr>
+        <tr><td>0:30–0:40</td><td><span class="phase-contract">CONTRACT</span></td><td>From new depth, dig heels again</td></tr>
+        <tr><td>0:40–1:00</td><td><span class="phase-relax">RELAX</span></td><td>Sink to final, deepest range</td></tr>
+      </table>
+      <div class="warn">⚠️ Knees bending / back rounding = structural limit. Stay & breathe — don't sacrifice form for fake depth.</div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">② Slow-Mo Jefferson Curls <span class="duration">1:30</span></div>
+      <div class="cue">💡 "Roll over a beach ball" — spine CURVES segmentally (NOT flat back). Chin → chest → roll down.</div>
+      <table>
+        <tr><th>Phase</th><th>Duration</th><th>Cue</th></tr>
+        <tr><td><strong>DOWN</strong></td><td>10s</td><td>Roll down vertebra by vertebra</td></tr>
+        <tr><td><strong>BOTTOM</strong></td><td>10s</td><td>Use abs to pull forehead toward knees</td></tr>
+        <tr><td><strong>UP</strong></td><td>10s</td><td>Tuck tailbone first, stack spine bottom-up</td></tr>
+      </table>
+      <div class="flow" style="margin-top:0.6em">
+        <span class="flow-repeat">× 3 cycles</span>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">③ Pike Compression Lifts <span class="duration">1:30</span></div>
+      <p style="font-size:12px;color:#555;margin-bottom:0.4em;">Seated pike. Legs locked, toes pointed. Hands by <strong>knees</strong> (intermediate) or <strong>shins</strong> (advanced).</p>
+      <div class="flow">
+        <span class="flow-box">15 pulses</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">15s hold (max height)</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">15s rest</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-repeat">REPEAT ×2</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BLOCK 2: PANCAKE -->
+<div class="block block-pancake">
+  <div class="block-header">
+    <span>🔶 BLOCK 2: THE PANCAKE</span>
+    <span>4:00</span>
+  </div>
+  <div class="block-body">
+
+    <div class="exercise">
+      <div class="exercise-title">① Layered PNF Pancake <span class="duration">1:00</span></div>
+      <p style="font-size:12px;color:#555;margin-bottom:0.4em;">Sit in widest straddle. Lean forward.</p>
+      <table>
+        <tr><th>Time</th><th>Phase</th><th>Action</th></tr>
+        <tr><td>0:00–0:10</td><td><span class="phase-contract">CONTRACT</span></td><td>Heels "pinch" toward each other (crush the floor)</td></tr>
+        <tr><td>0:10–0:30</td><td><span class="phase-relax">RELAX</span></td><td>Walk hands further forward. Stay.</td></tr>
+        <tr><td>0:30–0:40</td><td><span class="phase-contract">CONTRACT</span></td><td>From new depth, drive heels in again</td></tr>
+        <tr><td>0:40–1:00</td><td><span class="phase-relax">RELAX</span></td><td>Reach chest as close to floor as possible</td></tr>
+      </table>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">② Pancake Good Mornings <span class="duration">1:30</span></div>
+      <div class="cue">💡 <strong>FLAT BACK</strong> (unlike the pike). Hinge at hips — belly button toward floor. Hands behind head or reaching forward.</div>
+      <table>
+        <tr><th>Phase</th><th>Duration</th></tr>
+        <tr><td><strong>DOWN</strong></td><td>5s</td></tr>
+        <tr><td><strong>HOLD</strong></td><td>2s</td></tr>
+        <tr><td><strong>UP</strong></td><td>5s</td></tr>
+      </table>
+      <div class="flow" style="margin-top:0.6em">
+        <span class="flow-repeat">× 10 reps</span>
+        <span class="flow-arrow">—</span>
+        <span style="font-size:12px">hold rep 10 at bottom for <strong>30 seconds</strong></span>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">③ Straddle Compression Lifts <span class="duration">1:30</span></div>
+      <p style="font-size:12px;color:#555;margin-bottom:0.4em;">Seated straddle. Hands in front of groin. Lift both legs simultaneously. <strong>Do NOT lean back!</strong></p>
+      <div class="flow">
+        <span class="flow-box">15 pulses</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">15s hold (max height)</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">15s rest</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-repeat">REPEAT ×2</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCALING NOTES -->
+<div class="notes-section">
+  <div class="notes-header">⚡ Scaling Notes</div>
+  <div class="notes-body">
+    <table>
+      <tr><th>Situation</th><th>Response</th></tr>
+      <tr><td><strong>Quad cramp during compressions</strong></td><td>Normal — nervous system adapting. Shake 2 seconds → keep going.</td></tr>
+      <tr><td><strong>Want harder compressions</strong></td><td>Move hands closer to feet (further = significantly harder).</td></tr>
+      <tr><td><strong>Form breaking in pike</strong></td><td>You've hit today's structural limit — breathe and hold, don't push.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TRACKING -->
+<div class="tracking">
+  📊 <strong>Log 2 blocks per day.</strong> That's it.<br>
+  <a href="https://docs.google.com/spreadsheets/d/1eIDQDOcCobNkBQHpoylQ58SfsEh9XsJstkAz1wvON5E/edit?gid=0#gid=0">
+    → Open Tracking Sheet
+  </a>
+</div>
+
+</body>
+</html>
