@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gravity Sinker Challenge</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background: white;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0.3em;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 1.5em;
+  }
+
+  /* Intro block */
+  .intro {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5em;
+  }
+  .intro-header {
+    background: #4b5563;
+    color: white;
+    padding: 0.6em 1em;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .intro-body {
+    padding: 0.9em 1em;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.6;
+  }
+  .intro-body p { margin-bottom: 0.6em; }
+  .intro-body p:last-child { margin-bottom: 0; }
+  .golden-rules {
+    margin: 0.5em 0 0 0;
+    padding-left: 1.2em;
+  }
+  .golden-rules li { margin-bottom: 0.3em; }
+
+  /* Main blocks */
+  .block {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+  }
+  .block-header {
+    padding: 0.6em 1em;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .block-front  .block-header { background: #7c3aed; }
+  .block-middle .block-header { background: #db2777; }
+  .block-body { padding: 1em; }
+
+  /* Odd/even day badge */
+  .day-note {
+    background: #f3f4f6;
+    border-left: 3px solid #7c3aed;
+    padding: 5px 10px;
+    font-size: 11px;
+    color: #374151;
+    margin-bottom: 0.8em;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+  }
+
+  .exercise {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #eee;
+  }
+  .exercise:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .exercise-title {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 0.5em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .exercise-title .duration {
+    font-weight: 400;
+    color: #888;
+    font-size: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 0.4em;
+  }
+  th {
+    background: #f5f5f5;
+    text-align: left;
+    padding: 4px 8px;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 5px 8px;
+    border-top: 1px solid #f0f0f0;
+  }
+  td:first-child, td:nth-child(2) {
+    white-space: nowrap;
+  }
+  tr:nth-child(even) td { background: #fafafa; }
+  .phase-contract { color: #dc2626; font-weight: 700; }
+  .phase-relax    { color: #16a34a; font-weight: 700; }
+  .flow {
+    display: flex;
+    gap: 0.4em;
+    align-items: center;
+    font-size: 12px;
+    margin-top: 0.5em;
+    flex-wrap: wrap;
+  }
+  .flow-box {
+    background: #f0f0f0;
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-weight: 600;
+  }
+  .flow-arrow { color: #aaa; }
+  .flow-repeat { font-weight: 700; color: #7c3aed; }
+  .cue {
+    background: #fffbeb;
+    border-left: 3px solid #f59e0b;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin: 0.4em 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .warn {
+    background: #fef2f2;
+    border-left: 3px solid #ef4444;
+    padding: 5px 10px;
+    font-size: 11px;
+    margin-top: 0.5em;
+    border-radius: 0 4px 4px 0;
+    color: #b91c1c;
+  }
+  .notes-section {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5em;
+  }
+  .notes-header {
+    background: #374151;
+    color: white;
+    padding: 0.5em 1em;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .notes-body {
+    padding: 0.8em 1em;
+  }
+  .notes-body table { font-size: 12px; }
+  .tracking {
+    text-align: center;
+    background: #f0fdf4;
+    border: 2px solid #86efac;
+    border-radius: 10px;
+    padding: 0.8em 1em;
+    font-size: 12px;
+  }
+  .tracking a { color: #15803d; font-weight: 600; }
+  @media print {
+    body { padding: 1em; }
+    .block { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🪐 Gravity Sinker Challenge</h1>
+<p class="subtitle">Daily 8 minutes &nbsp;·&nbsp; 2 blocks of 4 min &nbsp;·&nbsp; Front Split + Middle Split</p>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="intro-header">🧠 What Is This?</div>
+  <div class="intro-body">
+    <p>Achieving the splits isn't about pushing past pain — it's about convincing your nervous system that it is <strong>safe at your end range</strong>. If your muscles are shaking and clenching, your brain thinks it's in danger and will shorten the muscle to protect you.</p>
+    <p>This protocol uses <strong>Neurological Reset (PNF)</strong> to bypass that defense mechanism, <strong>Tissue Remodeling (Eccentrics)</strong> to physically lengthen the fibers, and <strong>End-Range Strength</strong> to keep the hips stable.</p>
+    <p><strong>The Golden Rules:</strong></p>
+    <ol class="golden-rules">
+      <li><strong>Squared Hips:</strong> For front splits, do not let your back hip "twist" open. Keep headlights facing forward.</li>
+      <li><strong>No Sharps:</strong> If you feel "zapping," "burning," or a sudden "tearing" sensation, <strong>STOP immediately</strong>.</li>
+      <li><strong>Active Sinking:</strong> Use your muscles to control your descent. Never just "drop" into gravity.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- BLOCK 1: FRONT SPLIT -->
+<div class="block block-front">
+  <div class="block-header">
+    <span>🟣 BLOCK 1: THE FRONT SPLIT</span>
+    <span>4:00</span>
+  </div>
+  <div class="block-body">
+
+    <div class="day-note">
+      🗓️ <strong>Odd-numbered days:</strong> Left Leg Forward &nbsp;·&nbsp; <strong>Even-numbered days:</strong> Right Leg Forward
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">① Layered PNF Front Split <span class="duration">1:30</span></div>
+      <p style="font-size:12px;color:#555;margin-bottom:0.4em;">Use blocks/books under hands for support. Lunge forward, slide front leg out to first "wall." Keep hips perfectly square.</p>
+      <table>
+        <tr><th>Time</th><th>Phase</th><th>Action</th></tr>
+        <tr>
+          <td>0:00–0:15</td>
+          <td><span class="phase-contract">DOUBLE-CONTRACT</span></td>
+          <td><em>Front leg:</em> drag heel back toward groin (leg curl). <em>Back leg:</em> drive shin straight down (crush the floor). 40% effort.</td>
+        </tr>
+        <tr>
+          <td>0:15–0:45</td>
+          <td><span class="phase-relax">RELAX &amp; SINK</span></td>
+          <td>Breathe out. Relax both legs. Let gravity pull groin toward floor. Maintain squared hips. <strong>Stay here.</strong></td>
+        </tr>
+        <tr>
+          <td>0:45–1:00</td>
+          <td><span class="phase-contract">DOUBLE-CONTRACT</span></td>
+          <td>From this <strong>new depth</strong>, apply the same scissor contraction. Stay in range — don't back out.</td>
+        </tr>
+        <tr>
+          <td>1:00–1:30</td>
+          <td><span class="phase-relax">FINAL SINK</span></td>
+          <td>Relax and sink into your deepest range for the day.</td>
+        </tr>
+      </table>
+      <div class="warn">⚠️ If hips are twisting open, you've hit today's limit. Hold and breathe — don't sacrifice alignment for depth.</div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">② Slow-Mo Lunge-to-Pyramid Slides <span class="duration">1:30</span></div>
+      <div class="cue">💡 Keep your <strong>chest touching your front thigh</strong> the entire time — this is the critical cue. Hands on blocks throughout.</div>
+      <p style="font-size:12px;color:#555;margin: 0.4em 0;">From low lunge, slowly straighten the front leg into a pyramid stretch, then return.</p>
+      <table>
+        <tr><th>Phase</th><th>Duration</th><th>Cue</th></tr>
+        <tr><td><strong>STRAIGHTEN</strong></td><td>5s</td><td>Hamstring eccentric — chest stays on thigh</td></tr>
+        <tr><td><strong>HOLD (pyramid)</strong></td><td>10s</td><td>Full hamstring stretch at top</td></tr>
+        <tr><td><strong>LOWER (to lunge)</strong></td><td>5s</td><td>Hip flexor eccentric — control the descent</td></tr>
+        <tr><td><strong>PAUSE (lunge)</strong></td><td>10s</td><td>Reset before next rep</td></tr>
+      </table>
+      <div class="flow" style="margin-top:0.6em">
+        <span class="flow-repeat">× 3 slow reps</span>
+        <span class="flow-arrow">—</span>
+        <span style="font-size:12px">same side only</span>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">③ Split Hover <span class="duration">1:00</span></div>
+      <div class="cue">💡 End-range strength. Teach the hips to stay stable without hands. Even 0 inches of lift = full credit — the <em>effort</em> is what counts.</div>
+      <p style="font-size:12px;color:#555;margin: 0.4em 0;">Get into your deep Front Split from Exercise 1. Attempt to lift hands completely off blocks/floor. Use only groin and core to stabilize.</p>
+      <div class="flow">
+        <span class="flow-box">15s HOLD</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">15s rest</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">15s HOLD</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">15s rest</span>
+        <span class="flow-arrow">→</span>
+        <span style="font-size:12px;color:#666;">Exit slowly</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BLOCK 2: MIDDLE SPLIT -->
+<div class="block block-middle">
+  <div class="block-header">
+    <span>🩷 BLOCK 2: THE MIDDLE SPLIT</span>
+    <span>4:00</span>
+  </div>
+  <div class="block-body">
+
+    <div class="exercise">
+      <div class="exercise-title">① Layered PNF Middle Split <span class="duration">1:30</span></div>
+      <p style="font-size:12px;color:#555;margin-bottom:0.4em;">Stand in wide straddle. Toes pointed slightly out (protects knees). Slide legs apart to first "wall." Hands on blocks or floor.</p>
+      <table>
+        <tr><th>Time</th><th>Phase</th><th>Action</th></tr>
+        <tr>
+          <td>4:00–4:15</td>
+          <td><span class="phase-contract">CONTRACT</span></td>
+          <td>Imagine "crushing the floor" between your heels. Squeeze legs inward at 50% effort.</td>
+        </tr>
+        <tr>
+          <td>4:15–4:45</td>
+          <td><span class="phase-relax">RELAX &amp; SINK</span></td>
+          <td>Breathe. Relax adductors. Let gravity slide legs apart. Keep spine straight — this is <em>sinking</em>, not folding. <strong>Stay here.</strong></td>
+        </tr>
+        <tr>
+          <td>4:45–5:00</td>
+          <td><span class="phase-contract">CONTRACT</span></td>
+          <td>From deeper depth, squeeze inward again. (Careful not to cramp!)</td>
+        </tr>
+        <tr>
+          <td>5:00–5:30</td>
+          <td><span class="phase-relax">FINAL SINK</span></td>
+          <td>Relax and sink into your deepest middle split.</td>
+        </tr>
+      </table>
+      <div class="warn">⚠️ Keep spine STRAIGHT — do not let your back round like a pancake fold. This is about sinking, not folding forward.</div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">② Side Lunge Eccentrics <span class="duration">1:30</span></div>
+      <div class="cue">💡 The straight leg is the one being trained — keep it fully locked throughout. Hands on floor for balance.</div>
+      <p style="font-size:12px;color:#555;margin: 0.4em 0;">Stand in wide stance. Slowly lower into a deep Cossack squat on one side, keeping the opposite leg straight and locked.</p>
+      <table>
+        <tr><th>Phase</th><th>Duration</th><th>Cue</th></tr>
+        <tr><td><strong>LOWER</strong></td><td>8s</td><td>Control the stretch on the inner thigh of the straight leg</td></tr>
+        <tr><td><strong>PAUSE</strong></td><td>2s</td><td>Full depth — feel the adductor load</td></tr>
+        <tr><td><strong>PUSH UP</strong></td><td>5s</td><td>Drive through the bent-leg heel to rise</td></tr>
+      </table>
+      <div class="flow" style="margin-top:0.6em">
+        <span class="flow-repeat">× 5 reps</span>
+        <span class="flow-arrow">—</span>
+        <span style="font-size:12px">alternating legs: L, R, L, R, L</span>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">③ Straddle Hover <span class="duration">1:00</span></div>
+      <div class="cue">💡 Expect an immediate full-groin burn — that's the goal. Hands off = pure adductor isometric at end range.</div>
+      <p style="font-size:12px;color:#555;margin: 0.4em 0;">Get into your deepest Middle Split from Exercise 1. Hands on floor or blocks. Attempt to take hands off floor and hold with muscles only.</p>
+      <div class="flow">
+        <span class="flow-box">10s HOLD</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">10s rest</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">10s HOLD</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">10s rest</span>
+        <span class="flow-arrow">→</span>
+        <span style="font-size:12px;color:#666;">Exit slowly</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCALING NOTES -->
+<div class="notes-section">
+  <div class="notes-header">⚡ Scaling Notes</div>
+  <div class="notes-body">
+    <table>
+      <tr><th>Situation</th><th>Response</th></tr>
+      <tr><td><strong>Hips twisting during front split</strong></td><td>Reduce depth immediately. Squared hips > deeper split. Always.</td></tr>
+      <tr><td><strong>Cramping in adductors (middle split)</strong></td><td>Back off 10% range. Cramp = too much depth too fast. Ease in.</td></tr>
+      <tr><td><strong>Can't get hands off floor in Hover</strong></td><td>Normal — just apply maximum upward intention. The effort builds the strength.</td></tr>
+      <tr><td><strong>Sharp sensation in hip or groin</strong></td><td>Stop immediately. This is a no-sharps protocol. Rest and reassess.</td></tr>
+      <tr><td><strong>Front split depth not improving</strong></td><td>Focus on the Pyramid Slides — they unlock the hip flexor, which is usually the hidden limiter.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- TRACKING -->
+<div class="tracking">
+  📊 <strong>Log 2 blocks per day.</strong> That's it.<br>
+  <a href="https://docs.google.com/spreadsheets/d/1eIDQDOcCobNkBQHpoylQ58SfsEh9XsJstkAz1wvON5E/edit?gid=0#gid=0">
+    → Open Tracking Sheet
+  </a>
+</div>
+
+</body>
+</html>
